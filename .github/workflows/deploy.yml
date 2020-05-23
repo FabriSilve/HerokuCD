@@ -20,7 +20,6 @@ jobs:
     - name: Copy Server
       run: |
         mkdir release
-        cp ./server/Procfile ./release/Procfile
         cp ./server/package.json ./release/package.json
         cp ./server/package-lock.json ./release/package-lock.json
         cp ./server/Dockerfile ./release/Dockerfile
@@ -36,8 +35,8 @@ jobs:
       run: |
         cd release
         heroku container:login
-        heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
-        heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
+        heroku container:push -a ${{ secrets.HEROKU_APP_NAME }}
+        heroku container:release -a ${{ secrets.HEROKU_APP_NAME }}
 
     - name: Clean
       run: rm -rf ./release
