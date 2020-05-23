@@ -35,8 +35,8 @@ jobs:
       run: |
         cd release
         heroku container:login
-        heroku container:push -a ${{ secrets.HEROKU_APP_NAME }}
-        heroku container:release -a ${{ secrets.HEROKU_APP_NAME }}
+        heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
+        heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
 
     - name: Clean
       run: rm -rf ./release
