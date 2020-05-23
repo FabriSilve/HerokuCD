@@ -1,5 +1,6 @@
 # IDE Configs
-/.vscode
+.vscode
 
 # NPM 
-/node_modules
+node_modules
+
