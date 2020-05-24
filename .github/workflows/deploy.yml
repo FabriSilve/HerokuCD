@@ -31,14 +31,26 @@ jobs:
     - name: Copy Client
       run: cp -r ./client ./release/src/
 
-    - name: Deploy
+    # - name: Deploy Container
+    #   env: 
+    #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+    #   run: |
+    #     cd release
+    #     heroku container:login
+    #     heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
+    #     heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
+
+    - name: Deploy Git
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: |
         cd release
-        heroku container:login
-        heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
-        heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
-
+        heroku login
+        git init
+        heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
+        git add .
+        git commit -am "release"
+        git push heroku master -f
+    
     - name: Clean
       run: rm -rf ./release
