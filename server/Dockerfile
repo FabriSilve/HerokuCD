@@ -11,4 +11,5 @@ COPY ./src /src
 RUN npm install -g npm
 RUN npm install
 
-VOLUME /node_modules
+# VOLUME /node_modules
+CMD npm start
