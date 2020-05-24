@@ -1,10 +1,13 @@
 FROM node:latest
 
-WORKDIR /code
-COPY ./package.json /code/package.json
-COPY ./package-lock.json /code/package-lock.json
+WORKDIR /
+COPY ./Procfile /Procfile
+COPY ./package.json /package.json
+COPY ./package-lock.json /package-lock.json
+
+COPY ./src /src
 
 RUN npm install -g npm
 RUN npm install
 
-VOLUME /code/node_modules
+VOLUME /node_modules
